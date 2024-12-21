@@ -3,9 +3,11 @@ import tensorflow as tf
 import numpy as np
 from PIL import Image
 import cv2
+from pathlib import Path
 
+file_path = Path(__file__).parent / 'digit_recognition_model.h5'
 # Load the model
-model = tf.keras.models.load_model('digit_recognition_model.h5')
+model = tf.keras.models.load_model(file_path)
 
 st.title("Handwritten Digit Recognition")
 st.write("Upload an image of a digit for recognition!")
