@@ -5,28 +5,30 @@ from PIL import Image
 import cv2
 from pathlib import Path
 
-file_path = Path(__file__).parent / 'digit_recognition_model.h5'
-# Load the model
-model = tf.keras.models.load_model(file_path)
+print(cv2.__version__)
 
-st.title("Handwritten Digit Recognition")
-st.write("Upload an image of a digit for recognition!")
+# file_path = Path(__file__).parent / 'digit_recognition_model.h5'
+# # Load the model
+# model = tf.keras.models.load_model(file_path)
 
-# File uploader
-uploaded_file = st.file_uploader("Choose a digit image", type=["png", "jpg", "jpeg"])
+# st.title("Handwritten Digit Recognition")
+# st.write("Upload an image of a digit for recognition!")
 
-if uploaded_file:
-    # Display the image
-    image = Image.open(uploaded_file).convert('L')  # Convert to grayscale
-    st.image(image, caption='Uploaded Image', use_column_width=True)
+# # File uploader
+# uploaded_file = st.file_uploader("Choose a digit image", type=["png", "jpg", "jpeg"])
 
-    # Preprocess the image
-    image = np.array(image)
-    image = cv2.resize(image, (28, 28))
-    image = image / 255.0  # Normalize
-    image = image.reshape(1, 28, 28, 1)
+# if uploaded_file:
+#     # Display the image
+#     image = Image.open(uploaded_file).convert('L')  # Convert to grayscale
+#     st.image(image, caption='Uploaded Image', use_column_width=True)
 
-    # Predict the digit
-    prediction = model.predict(image)
-    digit = np.argmax(prediction)
-    st.write(f"Predicted Digit: {digit}")
+#     # Preprocess the image
+#     image = np.array(image)
+#     image = cv2.resize(image, (28, 28))
+#     image = image / 255.0  # Normalize
+#     image = image.reshape(1, 28, 28, 1)
+
+#     # Predict the digit
+#     prediction = model.predict(image)
+#     digit = np.argmax(prediction)
+#     st.write(f"Predicted Digit: {digit}")
